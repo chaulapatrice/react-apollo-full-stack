@@ -1,0 +1,17 @@
+{
+    "name": "assignment-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "apollo-datasource-rest": "^3.0.0",
+        "apollo-server": "^3.0.0",
+        "graphql": "^15.5.1"
+    }
+}
