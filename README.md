@@ -4,7 +4,7 @@ Full stack application using ReactJS and Apollo Data Graph Platform
 ### Clone repository locally
 `$ git clone https://github.com/ifelsegrandmaster/react-apollo-full-stack.git`
 
-- Start the server
+##### Start the server
 
 `$ cd react-apollo-full-stack/server `
 
@@ -13,7 +13,7 @@ Full stack application using ReactJS and Apollo Data Graph Platform
 `$ yarn start`
 
 
-- Start the client
+##### Start the client
 
 Open a new tab
 
