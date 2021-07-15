@@ -13,6 +13,7 @@ const typeDefs = `
         next: String
         previous: String
         people: [Person]!
+        count: Int!
     }
 
     type Query {

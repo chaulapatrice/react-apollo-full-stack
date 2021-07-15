@@ -9,7 +9,7 @@ export interface PeopleState {
     next: number | null;
     currentPage: number;
     previous: number | null;
-    pages: Array<number>;
+    pages: number;
     getPeople: boolean;
 }
 
@@ -18,7 +18,7 @@ const initialState: PeopleState = {
     next: null,
     previous: null,
     currentPage: 1,
-    pages: [],
+    pages: 0,
     getPeople: true,
 }
 
@@ -32,19 +32,22 @@ export const peopleSlice = createSlice({
             console.log("Setting new people", action.payload);
             state.people = action.payload;
         },
+        setCurrentPage: (state, action: PayloadAction<number>) => {
+            state.currentPage = action.payload;
+        },
         setNext: (state, action: PayloadAction<number | null>) => {
             state.next = action.payload;
         },
         setPrevious: (state, action: PayloadAction<number | null>) => {
             state.previous = action.payload;
         },
-        setPages: (state, action: PayloadAction<Array<number>>) => {
+        setPages: (state, action: PayloadAction<number>) => {
             state.pages = action.payload;
         }
     }
 })
 
-export const {setPeople, setNext, setPrevious, setPages} = peopleSlice.actions;
+export const {setPeople, setNext, setPrevious, setPages, setCurrentPage} = peopleSlice.actions;
 
 // Selectors
 export const selectPeople = (state: RootState) => state.people.people;

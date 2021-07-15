@@ -4,7 +4,7 @@ module.exports = {
             dataSources.swapidevAPI.getPeople({ page }),
         person: (_, { id }, { dataSources }) =>
             dataSources.swapidevAPI.getPersonById({ personId: id }),
-        search: (_, { term, page }, { dataSources }) =>
+        search: (_, { term, page = 1 }, { dataSources }) =>
             dataSources.swapidevAPI.searchPeople({ term, page }),
     }
 }

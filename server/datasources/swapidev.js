@@ -15,6 +15,7 @@ class SwapidevAPI extends RESTDataSource {
             return {
                 next: null,
                 previous: null,
+                count: 0,
                 people: []
             }
         }
@@ -25,7 +26,8 @@ class SwapidevAPI extends RESTDataSource {
         return {
             people,
             next: response.next,
-            previous: response.previous
+            previous: response.previous,
+            count: response.count
         }
 
     }
