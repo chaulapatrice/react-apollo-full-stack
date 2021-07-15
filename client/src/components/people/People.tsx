@@ -115,7 +115,7 @@ export default function People(props: any) {
     ))
     return (
         <Container maxWidth="sm">
-            <h1>People</h1>
+            <h1> Star wars people</h1>
             <List>
                 {peopleItems}
             </List>

@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Button from '@material-ui/core/Button';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {selectPeople, selectNext} from './peopleSlice';
 import { isNumber } from 'lodash';
@@ -42,16 +44,13 @@ export default function PersonDetails(props: any) {
 
   return (
     <Container className = {classes.container} maxWidth="sm">
-      <h1>Person Details</h1>
+      <Button variant="contained" onClick={props.history.goBack}>
+        <ArrowBackIcon />
+      </Button>
+      <h1>{person.name}</h1>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
-            <TableRow>
-              <TableCell className={classes.title} component="th" scope="row">
-                Name
-              </TableCell>
-              <TableCell align="right">{person.name}</TableCell>
-            </TableRow>
             <TableRow>
               <TableCell className={classes.title} component="th" scope="row">
                 Height
