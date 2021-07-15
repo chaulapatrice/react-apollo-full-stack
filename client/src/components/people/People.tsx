@@ -1,4 +1,5 @@
 import React, { useEffect, ChangeEvent } from 'react';
+import StarWarsLogo from "./star-wars-logo.png";
 import Person from './Person';
 
 import {
@@ -31,6 +32,15 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       height: '100vh',
     },
+    logo: {
+        height: '100px'
+    },
+    header: {
+        textAlign: 'center',
+    },
+    container: {
+        marginBottom: '10px',
+    }
   }),
 );
 
@@ -114,8 +124,11 @@ export default function People(props: any) {
         <Person key={person.name} name={person.name} id={index} />
     ))
     return (
-        <Container maxWidth="sm">
-            <h1> Star wars people</h1>
+        <Container className={classes.container} maxWidth="sm">
+            <div className={classes.header}>
+            <img className={classes.logo} src={StarWarsLogo} />
+            <h3> Star wars people</h3>
+            </div>
             <List>
                 {peopleItems}
             </List>

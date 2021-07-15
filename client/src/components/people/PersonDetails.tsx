@@ -10,18 +10,25 @@ import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import {selectPeople, selectNext} from './peopleSlice';
+import { selectPeople, selectNext } from './peopleSlice';
+import StarWarsLogo from "./star-wars-logo.png";
 import { isNumber } from 'lodash';
 
 const useStyles = makeStyles({
   table: {
   },
   title: {
-      fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   container: {
-      marginTop: 10,
-  }
+    marginTop: 10,
+  },
+  header: {
+    textAlign: 'center',
+  },
+  logo: {
+    height: '100px'
+  },
 });
 
 export default function PersonDetails(props: any) {
@@ -34,23 +41,27 @@ export default function PersonDetails(props: any) {
 
   const person = people.find(person => person.name === name);
 
-  if(!person){
-      return (
-        <Container maxWidth="sm">
-          <p>Person not found</p>
-        </Container>
-      )
+  if (!person) {
+    return (
+      <Container maxWidth="sm">
+        <p>Person not found</p>
+      </Container>
+    )
   }
 
   return (
-    <Container className = {classes.container} maxWidth="sm">
+    <Container className={classes.container} maxWidth="sm">
+      <div className={classes.header}>
+        <img className={classes.logo} src={StarWarsLogo} />
+        <h3> Star wars people</h3>
+      </div>
       <Button variant="contained" onClick={props.history.goBack}>
         <ArrowBackIcon />
       </Button>
       <h1>{person.name}</h1>
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableBody>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableBody>
             <TableRow>
               <TableCell className={classes.title} component="th" scope="row">
                 Height
@@ -75,9 +86,9 @@ export default function PersonDetails(props: any) {
               </TableCell>
               <TableCell align="right">{person.homeworld}</TableCell>
             </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 }

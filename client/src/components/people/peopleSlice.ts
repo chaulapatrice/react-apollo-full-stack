@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState, AppThunk} from "../../app/store";
-import {ApolloClient, NormalizedCacheObject} from "@apollo/client";
 import {GetPeople_people_people} from './__generated__/GetPeople';
 
 
@@ -29,7 +28,6 @@ export const peopleSlice = createSlice({
     initialState: initialState,
     reducers: {
         setPeople: (state, action: PayloadAction<Array<GetPeople_people_people>>) => {
-            console.log("Setting new people", action.payload);
             state.people = action.payload;
         },
         setCurrentPage: (state, action: PayloadAction<number>) => {
