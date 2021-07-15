@@ -1,6 +1,6 @@
 # react-apollo-full-stack
-Full stack application using ReactJS and Apollo Data Graph Platform
-
+Full stack application using ReactJS and Apollo Data Graph Platform. 
+Access the deployed version on https://apollo-star-wars-people.s3.af-south-1.amazonaws.com/index.html
 ### Clone repository locally
 `$ git clone https://github.com/ifelsegrandmaster/react-apollo-full-stack.git`
 
@@ -22,3 +22,4 @@ Open a new tab
 `$ yarn install`
 
 `$ yarn start`
+
