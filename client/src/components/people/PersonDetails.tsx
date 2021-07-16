@@ -9,10 +9,10 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+
+import { useAppSelector } from '../../app/hooks';
 import { selectPeople, selectNext } from './peopleSlice';
 import StarWarsLogo from "./star-wars-logo.png";
-import { isNumber } from 'lodash';
 
 const useStyles = makeStyles({
   table: {

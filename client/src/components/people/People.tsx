@@ -1,6 +1,7 @@
 import React, { useEffect, ChangeEvent } from 'react';
 import StarWarsLogo from "./star-wars-logo.png";
 import Person from './Person';
+import SearchWidget from "./SearchWidget";
 
 import {
     selectPeople,
@@ -43,17 +44,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }),
 );
-
-export const PERSON_TILE_DATA = gql`
-     fragment PersonTile on Person{
-         __typename
-         name
-         gender
-         height
-         mass
-         homeworld
-     }
-`
 
 export const GET_PEOPLE = gql`
     query GetPeople($page: Int = 1) {
@@ -128,6 +118,7 @@ export default function People(props: any) {
             <div className={classes.header}>
             <img className={classes.logo} src={StarWarsLogo} />
             <h3> Star wars people</h3>
+            <SearchWidget />
             </div>
             <List>
                 {peopleItems}

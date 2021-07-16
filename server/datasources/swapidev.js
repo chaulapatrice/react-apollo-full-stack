@@ -39,9 +39,10 @@ class SwapidevAPI extends RESTDataSource {
             response = await this.get(`people?search=${term}&page=${page}`);
         } catch (error) {
             return {
+                count: 0,
                 next: null,
                 previous: null,
-                people: []
+                people: [],
             }
         }
 
@@ -51,7 +52,8 @@ class SwapidevAPI extends RESTDataSource {
         return {
             people,
             next: response.next,
-            previous: response.previous
+            previous: response.previous,
+            count: response.count,
         }
 
     }
