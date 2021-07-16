@@ -1,21 +1,17 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState, AppThunk} from "../../app/store";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {RootState} from "../../app/store";
 import {GetPeople_people_people} from './__generated__/GetPeople';
 
 
 export interface PeopleState {
     people: Array<GetPeople_people_people>;
-    next: number | null;
     currentPage: number;
-    previous: number | null;
     pages: number;
     getPeople: boolean;
 }
 
 const initialState: PeopleState = {
     people: [],
-    next: null,
-    previous: null,
     currentPage: 1,
     pages: 0,
     getPeople: true,
@@ -33,24 +29,16 @@ export const peopleSlice = createSlice({
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
-        setNext: (state, action: PayloadAction<number | null>) => {
-            state.next = action.payload;
-        },
-        setPrevious: (state, action: PayloadAction<number | null>) => {
-            state.previous = action.payload;
-        },
         setPages: (state, action: PayloadAction<number>) => {
             state.pages = action.payload;
         }
     }
 })
 
-export const {setPeople, setNext, setPrevious, setPages, setCurrentPage} = peopleSlice.actions;
+export const {setPeople, setPages, setCurrentPage} = peopleSlice.actions;
 
 // Selectors
 export const selectPeople = (state: RootState) => state.people.people;
-export const selectNext = (state: RootState) => state.people.next;
-export const selectPrevious = (state: RootState) => state.people.previous;
 export const selectCurrentPage = (state: RootState) => state.people.currentPage;
 export const selectPages = (state: RootState) => state.people.pages;
 

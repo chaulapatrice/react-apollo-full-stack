@@ -19,8 +19,6 @@ export interface GetPeople_people_people {
 export interface GetPeople_people {
   __typename: "PeopleConnection";
   count: number;
-  next: string | null;
-  previous: string | null;
   people: (GetPeople_people_people | null)[];
 }
 

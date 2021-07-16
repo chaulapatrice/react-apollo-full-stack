@@ -19,8 +19,6 @@ export interface SearchPeople_search_people {
 export interface SearchPeople_search {
   __typename: "PeopleConnection";
   count: number;
-  next: string | null;
-  previous: string | null;
   people: (SearchPeople_search_people | null)[];
 }
 

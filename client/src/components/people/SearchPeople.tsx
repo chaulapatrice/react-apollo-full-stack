@@ -54,8 +54,6 @@ export const SEARCH_PEOPLE = gql`
     query SearchPeople($page: Int = 1 $searchTerm: String!) {
         search(page: $page term: $searchTerm ) {
             count
-            next
-            previous
             people {
                 name
                 gender
@@ -68,14 +66,22 @@ export const SEARCH_PEOPLE = gql`
 `
 
 export default function People(props: any) {
+
     const currentPage = useAppSelector(selectCurrentPage);
     const searchTerm = useAppSelector(selectSearchTerm);
     const pages = useAppSelector(selectPages);
     const dispatch = useAppDispatch();
-    // Select people
     const people = useAppSelector(selectPeople);
-    console.log(people);
     const classes = useStyles();
+    // Create list items
+    const peopleItems = people.map((person, index) => (
+        <Person key={person.name} name={person.name} id={index} />
+    ))
+
+    // Pagination handler
+    const setPage = (event: ChangeEvent<unknown>, value: number) => {
+        dispatch(setCurrentPage(value));
+    };
 
     // Reset page number whenever searchTerm changes
     useEffect(() => {
@@ -104,9 +110,7 @@ export default function People(props: any) {
             }
         }
     );
-
-
-
+    // Diplay progress if data hasn't finished loading
     if (loading) {
         return (
             <Container maxWidth="sm">
@@ -117,14 +121,6 @@ export default function People(props: any) {
         )
     }
 
-    const setPage = (event: ChangeEvent<unknown>, value: number) => {
-        console.log('New value', value);
-        dispatch(setCurrentPage(value));
-    };
-    // Create list items
-    const peopleItems = people.map((person, index) => (
-        <Person key={person.name} name={person.name} id={index} />
-    ))
     return (
         <Container className={classes.container} maxWidth="sm">
             <div className={classes.header}>

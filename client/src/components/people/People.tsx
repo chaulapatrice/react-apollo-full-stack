@@ -21,7 +21,6 @@ import List from '@material-ui/core/List';
 import { gql, useQuery } from '@apollo/client';
 import * as GetPeopleTypes from "./__generated__/GetPeople";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import PersonDetails from './PersonDetails';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,8 +48,6 @@ export const GET_PEOPLE = gql`
     query GetPeople($page: Int = 1) {
         people(page: $page) {
             count
-            next
-            previous
             people {
                 name
                 gender
@@ -66,14 +63,21 @@ export default function People(props: any) {
     const currentPage = useAppSelector(selectCurrentPage);
     const pages = useAppSelector(selectPages);
     const dispatch = useAppDispatch();
-    // Select people
-    const people = useAppSelector(selectPeople);
     const classes = useStyles();
+    const people = useAppSelector(selectPeople);
+    // Create list items
+    const peopleItems = people.map((person,index) => (
+        <Person key={person.name} name={person.name} id={index} />
+    ))
 
+    // Handler for pagination
+    const setPage = (event: ChangeEvent<unknown>, value: number) => {
+        dispatch(setCurrentPage(value));
+    };
+
+    // Fetch data from graphql server
     const {
-        data,
-        loading,
-        error,
+        loading
       } = useQuery<
         GetPeopleTypes.GetPeople,
         GetPeopleTypes.GetPeopleVariables
@@ -94,9 +98,8 @@ export default function People(props: any) {
         }
       );
 
-
-
-      if(loading) {
+    // Display a spinner
+    if(loading) {
         return (
         <Container  maxWidth="sm">
             <div className={classes.loading}>
@@ -106,13 +109,6 @@ export default function People(props: any) {
        )
     }
 
-    const setPage = (event: ChangeEvent<unknown>, value: number) => {
-        dispatch(setCurrentPage(value));
-    };
-    // Create list items
-    const peopleItems = people.map((person,index) => (
-        <Person key={person.name} name={person.name} id={index} />
-    ))
     return (
         <Container className={classes.container} maxWidth="sm">
             <div className={classes.header}>

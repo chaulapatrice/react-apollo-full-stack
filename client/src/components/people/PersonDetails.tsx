@@ -11,7 +11,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 
 import { useAppSelector } from '../../app/hooks';
-import { selectPeople, selectNext } from './peopleSlice';
+import { selectPeople } from './peopleSlice';
 import StarWarsLogo from "./star-wars-logo.png";
 
 const useStyles = makeStyles({
@@ -34,8 +34,6 @@ const useStyles = makeStyles({
 export default function PersonDetails(props: any) {
   const classes = useStyles();
   const people = useAppSelector(selectPeople);
-  const next = useAppSelector(selectNext);
-  console.log(people, next)
   const name = props.match.params.name;
   console.log(name);
 

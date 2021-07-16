@@ -10,9 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import {
   ApolloClient,
   NormalizedCacheObject,
-  ApolloProvider,
-  useQuery,
-  gql
+  ApolloProvider
 } from "@apollo/client";
 
 import cache from "./cache";
